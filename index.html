@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Call with URL Param</title>
+</head>
+<body>
+  <h1>Fetching data...</h1>
+
+  <script>
+    function getAccessTokenFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('at');
+    }
+
+    async function fetchData() {
+      const accessToken = btoa(getAccessTokenFromURL());
+
+      if (!accessToken) {
+        document.body.innerHTML = "<h1>Error: 'at' parameter not found in URL</h1>";
+        return;
+      }
+
+      try {
+        const response = await fetch("https://iassistant.ideas2it.com/api/skill", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${accessToken}`,
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            name: "Node js",
+            experienceYear: "2",
+            experienceMonth: "0"
+          })
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        document.body.innerHTML = `<h1>API Response:</h1><pre>${JSON.stringify(data, null, 2)}</pre>`;
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        document.body.innerHTML = "<h1>Error fetching data. Check console for details.</h1>";
+      }
+    }
+
+    fetchData();
+  </script>
+</body>
+</html>

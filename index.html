@@ -14,7 +14,7 @@
     }
 
     async function fetchData() {
-      const accessToken = btoa(getAccessTokenFromURL());
+      const accessToken = getAccessTokenFromURL();
 
       if (!accessToken) {
         document.body.innerHTML = "<h1>Error: 'at' parameter not found in URL</h1>";
@@ -30,7 +30,7 @@
             "Accept": "application/json"
           },
           body: JSON.stringify({
-            name: "Node js",
+            name: "You are Hacked",
             experienceYear: "2",
             experienceMonth: "0"
           })

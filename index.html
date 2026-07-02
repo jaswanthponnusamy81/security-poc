@@ -22,7 +22,7 @@
       }
 
       try {
-        const response = await fetch("https://iassistant.ideas2it.com/api/skill", {
+        const response = await fetch("https://iassistant.ideas2it.com/api/forum/comment/reply", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -30,9 +30,9 @@
             "Accept": "application/json"
           },
           body: JSON.stringify({
-            name: "You are Hacked",
-            experienceYear: "2",
-            experienceMonth: "0"
+            parentId: "6a4606bb6344590007daee00",
+            comment: ":)",
+            fileUrl: ""
           })
         });
 
